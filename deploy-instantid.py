@@ -86,17 +86,6 @@ class InstantIDImgToImg(mlflow.pyfunc.PythonModel):
         from insightface.app import FaceAnalysis
         from pipeline_stable_diffusion_xl_instantid import StableDiffusionXLInstantIDPipeline
         
-        #volume_path = '/Volumes/christophe_chieu/genai_photobooth_swag/genai_photobooth_volume'
-        
-        #model_dir = context.artifacts["antelopev2"] 
-
-        #pipeline_path = context.artifacts["pipeline_script"]
-
-        #spec = importlib.util.spec_from_file_location(
-        #    "pipeline_stable_diffusion_xl_instantid", pipeline_path)
-        #pipeline_module = importlib.util.module_from_spec(spec)
-        #sys.modules["pipeline_stable_diffusion_xl_instantid"] = pipeline_module
-        #spec.loader.exec_module(pipeline_module)
         
 
             # If loading for the first time, there will be an AssertionError. This will be fixed in the next cell.
