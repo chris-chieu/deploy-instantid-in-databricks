@@ -230,7 +230,7 @@ output_schema=Schema([ColSpec(DataType.string, "image")])
 signature = ModelSignature(inputs=input_schema,outputs=output_schema)
 
 
-image = image_to_base64(load_image_from_volume("/Volumes/christophe_chieu/genai_photobooth_swag/genai_photobooth_volume/image_test_christophe_chieu.jpeg"))
+image = image_to_base64(load_image_from_volume("/Volumes/catalog/schema/volume/image.jpeg"))
 
 prompt = "film noir style, ink sketch|vector, male man, highly detailed, sharp focus, ultra sharpness, monochrome, high contrast, dramatic shadows, 1940s style, mysterious, cinematic"
 negative_prompt = "ugly, deformed, noisy, blurry, low contrast, realism, photorealistic, vibrant, colorful"
@@ -249,10 +249,10 @@ with mlflow.start_run() as run:
         input_example=input_example,
         code_paths=["./pipeline_stable_diffusion_xl_instantid.py", "./ip_adapter"],
         signature=signature,
-        registered_model_name="christophe_chieu.genai_photobooth_swag.instantid-model",
+        registered_model_name="catalog.schema.instantid-model",
         artifacts={
-                   "face_adapter": "/dbfs/FileStore/christophe_chieu/checkpoints/ip-adapter.bin",
-                  "controlnet": "/dbfs/FileStore/christophe_chieu/checkpoints/ControlNetModel",
+                   "face_adapter": "/Volumes/catalog/schema/volume/checkpoints/ip-adapter.bin",
+                  "controlnet": "/Volumes/catalog/schema/volume/checkpoints/ControlNetModel",
                    },
         pip_requirements=["transformers==4.48.0", "torch==2.5.1", "torchvision==0.20.1" , "accelerate", "diffusers==0.32.2", "huggingface_hub==0.27.1", "invisible-watermark>=0.2.0", "bitsandbytes==0.45.4", "sentencepiece==0.2.0", "insightface==0.7.3", "onnxruntime-gpu==1.22.0"]
     )
@@ -266,7 +266,7 @@ from mlflow import MlflowClient
 
 client = MlflowClient()
 
-model_name = "christophe_chieu.genai_photobooth_swag.instantid-model"
+model_name = "catalog.schema.instantid-model"
 
 # Get latest version (UC-compatible)
 latest_version = client.search_model_versions(f"name='{model_name}'")[0].version
@@ -274,7 +274,7 @@ latest_version = client.search_model_versions(f"name='{model_name}'")[0].version
 alias_name = "production"
 
 client.set_model_version_tag(
-    name="christophe_chieu.genai_photobooth_swag.instantid-model",
+    name="catalog.schema.instantid-model",
     version=latest_version,
     key="RemoveAfter",
     value="20251231"
