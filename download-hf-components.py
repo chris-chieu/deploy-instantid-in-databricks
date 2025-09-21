@@ -1,4 +1,5 @@
 from huggingface_hub import hf_hub_download
+import shutil
 
 
 volume_path = "/Volumes/<catalog>/<schema>/<volume>"
